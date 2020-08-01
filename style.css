@@ -1,3 +1,7 @@
+.frame {
+    display: flex;
+}
+
 .grid {
     display: flex;
     flex-wrap: wrap;
@@ -9,6 +13,27 @@
 .grid div {
     height: 20px;
     width: 20px;
+}
+
+.missions {
+
+}
+
+#mission1 {
+
+}
+
+#mission2 {
+    
+}
+
+#mission3 {
+    
+}
+
+.completed {
+    font-family: monospace;
+    color: yellow;
 }
 
 .moon-surface {

@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid')
-    const missions = document.querySelectorAll('.mission')
     const width = 28 // 28 x 28 = 784 squares
-    
     const layout = [
         0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,
         0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,
@@ -69,8 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let astronautCurrentIndex = 747
     squares[astronautCurrentIndex].classList.add('astronaut')
 
-    document.addEventListener('keyup', moveAstronaut)
-
     function moveAstronaut(e) {
         squares[astronautCurrentIndex].classList.remove('astronaut')
         
@@ -89,7 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(isAtLeftEdge) {
                         astronautCurrentIndex = astronautCurrentIndex + 27
                     }
+
+                // if astronaut is near moon-lander, trigger option box
+                if (squares[astronautCurrentIndex -1].classList.contains('moon-lander') 
+                    || squares[astronautCurrentIndex -1].classList.contains('moon-rocks')
+                    || squares[astronautCurrentIndex -1].classList.contains('icy-area') 
+                    || squares[astronautCurrentIndex -1].classList.contains('moon-base-land')) {
+
+                    moonLander()
+                    collectMoonRock()
+                    visitIcyArea()
+                    buildMoonBase()
+                }
                 break
+
             case 38:
                 if (astronautCurrentIndex - width >= 0
                     && !squares[astronautCurrentIndex - width].classList.contains('moon-lander')
@@ -136,10 +145,52 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 break
         }
-
         squares[astronautCurrentIndex].classList.add('astronaut')
     }
 
-
+    document.addEventListener('keydown', moveAstronaut)
     moveAstronaut()
+
+    function moonLander() {
+        let leftDetectCompletion = !squares[astronautCurrentIndex -1].classList.contains('completed')
+       if(!squares[astronautCurrentIndex -1].classList.contains('completed')) {
+            let mission1 = document.getElementById('mission1')
+            mission1.classList.add('completed')
+       } else {
+
+       }
+    }
+
+    function collectMoonRock() {
+        if(!squares[astronautCurrentIndex -1].classList.contains('completed')) {
+            let mission2 = document.getElementById('mission2')
+            mission2.classList.add('completed')
+        }
+        else {
+
+        }
+    }
+
+    function visitIcyArea() {
+        if(!squares[astronautCurrentIndex -1].classList.contains('completed')) {
+            let mission3 = document.getElementById('mission3')
+            mission3.classList.add('completed')
+        }
+        else {
+
+        }
+    }
+
+    function buildMoonBase() {
+        if(!squares[astronautCurrentIndex -1].classList.contains('completed')) {
+            let moonBase = document.querySelectorAll('.moon-base-land')
+            moonBase.classList.remove('moon-base-land')
+
+            let mission4 = document.getElementById('mission4')
+            mission4.classList.add('completed')
+        }
+        else {
+
+        }
+    }
 })
