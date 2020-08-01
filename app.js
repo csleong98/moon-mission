@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoad', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid')
     const missions = document.querySelectorAll('.mission')
     const width = 28 // 28 x 28 = 784 squares
@@ -40,6 +40,30 @@ document.addEventListener('DOMContentLoad', () => {
     // 2 - moon rocks
     // 3 - glacier, icy area
     // 4 - moon base
+
+    // draw and render
+    function createGrid() {
+        for (i = 0; i < layout.length; i++) {
+            const square = document.createElement('div')
+            grid.appendChild(square)
+            squares.push(square)
+            
+            // add layout to the board
+            if (layout[i] === 0) {
+                squares[i].classList.add('moon-surface')
+            } else if (layout[i] === 1) {
+                squares[i].classList.add('moon-lander')
+            } else if (layout[i] === 2) {
+                squares[i].classList.add('moon-rocks')
+            } else if (layout[i] === 3) {
+                squares[i].classList.add('icy-area')
+            } else if (layout[i] === 4) {
+                squares[i].classList.add('moon-base-land')
+            }
+        }
+    }
+
+    createGrid()
 
 
 })
