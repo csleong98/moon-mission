@@ -98,6 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     && !squares[astronautCurrentIndex - width].classList.contains('moon-base-land'))
 
                     astronautCurrentIndex -= width
+
+                    const isAtTopEdge = (astronautCurrentIndex >= 0 && astronautCurrentIndex <= 27)
+
+                    if(isAtTopEdge) {
+                        astronautCurrentIndex = astronautCurrentIndex + 756
+                    }
                 break
             case 39:
                 if (astronautCurrentIndex % width < width -1 
@@ -122,6 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     && !squares[astronautCurrentIndex + width].classList.contains('moon-base-land'))
 
                     astronautCurrentIndex += width
+
+                    const isAtBottoomEdge = (astronautCurrentIndex >= 756 && astronautCurrentIndex <= 784)
+
+                    if(isAtBottoomEdge) {
+                        astronautCurrentIndex = astronautCurrentIndex - 756
+                    }
                 break
         }
 
