@@ -65,5 +65,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createGrid()
 
+    // starting position of astronaut
+    let astronautCurrentIndex = 747
+    squares[astronautCurrentIndex].classList.add('astronaut')
 
+    document.addEventListener('keyup', moveAstronaut)
+
+    function moveAstronaut(e) {
+        squares[astronautCurrentIndex].classList.remove('astronaut')
+        
+        switch(e.keyCode) {
+            case 37:
+                if (astronautCurrentIndex % width !== 0 
+                    && !squares[astronautCurrentIndex -1].classList.contains('moon-lander')
+                    && !squares[astronautCurrentIndex -1].classList.contains('moon-rocks')
+                    && !squares[astronautCurrentIndex -1].classList.contains('icy-area')
+                    && !squares[astronautCurrentIndex -1].classList.contains('moon-base-land'))
+
+                    astronautCurrentIndex -=1
+                    // check if astronaut is in the left side
+                    const isAtLeftEdge = (astronautCurrentIndex % width === 0)
+
+                    if(isAtLeftEdge) {
+                        astronautCurrentIndex = astronautCurrentIndex + 27
+                    }
+                break
+            case 38:
+                if (astronautCurrentIndex - width >= 0
+                    && !squares[astronautCurrentIndex - width].classList.contains('moon-lander')
+                    && !squares[astronautCurrentIndex - width].classList.contains('moon-rocks')
+                    && !squares[astronautCurrentIndex - width].classList.contains('icy-area')
+                    && !squares[astronautCurrentIndex - width].classList.contains('moon-base-land'))
+
+                    astronautCurrentIndex -= width
+                break
+            case 39:
+                if (astronautCurrentIndex % width < width -1 
+                    && !squares[astronautCurrentIndex + 1].classList.contains('moon-lander')
+                    && !squares[astronautCurrentIndex + 1].classList.contains('moon-rocks')
+                    && !squares[astronautCurrentIndex + 1].classList.contains('icy-area')
+                    && !squares[astronautCurrentIndex + 1].classList.contains('moon-base-land'))
+
+                    astronautCurrentIndex +=1
+                    // check if astronaut is in the right side
+                    const isAtRightSide = !((astronautCurrentIndex % width) < (width -1))
+
+                    if(isAtRightSide) {
+                        astronautCurrentIndex = astronautCurrentIndex - 27
+                    }
+                break
+            case 40:
+                if (astronautCurrentIndex + width >= 0
+                    && !squares[astronautCurrentIndex + width].classList.contains('moon-lander')
+                    && !squares[astronautCurrentIndex + width].classList.contains('moon-rocks')
+                    && !squares[astronautCurrentIndex + width].classList.contains('icy-area')
+                    && !squares[astronautCurrentIndex + width].classList.contains('moon-base-land'))
+
+                    astronautCurrentIndex += width
+                break
+        }
+
+        squares[astronautCurrentIndex].classList.add('astronaut')
+    }
+
+
+    moveAstronaut()
 })

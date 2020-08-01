@@ -12,7 +12,7 @@
 }
 
 .moon-surface {
-    background-color: white;
+    background-color: rgb(238, 238, 238);
 }
 
 .moon-lander {
@@ -28,9 +28,13 @@
 }
 
 .moon-base-land {
-    background-color: rgb(232, 232, 232);
+    background-color: rgb(238, 238, 238);
 }
 
 .moon-base {
     background-color: rgb(52, 114, 222);
+}
+
+.astronaut {
+    background-color: blue;
 }
