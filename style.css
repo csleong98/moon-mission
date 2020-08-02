@@ -1,5 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Space Mono', monospace;
+    background-color: #000;
+    color: #fefefe;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
+    margin: 8px 0;
+}
+
+.actions-container {
+    display: flex;
+}
+
+.primary-button {
+    margin: 0 16px 0 0;
+    font-family: 'Fira Code', monospace;
+    font-weight: 500;
+    padding: 8px 16px;
+    background-color: #fefefe;
+    color: #000;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.5s, color 0.5s, 0.5s;
+}
+
+.primary-button:hover {
+    cursor: pointer;
+    background-color: #000;
+    color: #3afacf;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+}
+
 .frame {
     display: flex;
+    justify-content: center;
 }
 
 .grid {
@@ -7,12 +50,72 @@
     flex-wrap: wrap;
     width: 560px;
     height: 560px;
-    border: solid black
+    border: solid black;
+    padding: 16px 16px;
+    border-radius: 10px;
+    background-color: #191725;
 }
 
 .grid div {
     height: 20px;
     width: 20px;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.quest-container {
+    color: #fefefe;
+    width: 250px;
+    background-color: #191725;
+    border-radius: 10px;
+    padding: 16px 16px;
+}
+
+.quest {
+    border: 1px solid #fff;
+    border-radius: 4px;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+.tag {
+    padding: 2px 4px;
+    margin: 0 4px 0 0;
+    border-radius: 4px;
+    color: #f748b2;
+    background-color: #191725;
+    border: 1px #f748b2 solid;
+}
+
+.tag-completed {
+    padding: 2px 4px;
+    margin: 0 4px 0 0;
+    border-radius: 4px;
+    color: #27c93f;
+    background-color: #191725;
+    border: 1px #27c93f solid;
+}
+
+.inventory-container {
+    color: #fefefe;
+    margin: 1% auto;
+    width: 560px;
+    display: flex;
+    flex-direction: column;
+    background-color: #191725;
+    border-radius: 10px;
+    padding: 16px 16px;
+}
+
+#actionButton1 {
+    display: none;
+}
+
+#actionButton2 {
+    display: none;
 }
 
 .missions {
@@ -32,12 +135,11 @@
 }
 
 .completed {
-    font-family: monospace;
-    color: rgb(9, 133, 69);
+    color: #27c93f;
 }
 
 .moon-surface {
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(211, 211, 211);
 }
 
 .moon-lander {
@@ -67,10 +169,8 @@
 /* modal */
 .modal {
     display: none;
-    position: fixed;
+    position: absolute;
     z-index: 1;
-    left: 0;
-    top: 0;
     width: 560px;
     height: 560px;
     overflow: auto;
@@ -88,10 +188,10 @@
 
 /* The Close Button */
 #close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
 }
 
 #close:hover,
@@ -99,8 +199,4 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
-}
-
-#actionButton {
-    display: none;
 }

@@ -3,32 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moon Mission</title>
+    <title>🌑 Moon Mission</title>
 
     <link rel="stylesheet" href="style.css">
     <script src="app.js"></script>
 </head>
 <body>
+    <div class="top">
+        <h2>🌑 Explore the Moon</h2>
+    </div>
+    
     <div class="frame">
-        <div id="mission-modal" class="modal">
+        <!-- <div id="mission-modal" class="modal">
             <div class="modal-content">
                 <span id="close">&times;</span>
                 <h4></h4>
                 <button id="option1"></button>
                 <button id="option2"></button>
             </div>
-        </div>
-        <div class="grid"></div>
+        </div> -->
+        <div class="left-side">
+            <div class="grid"></div>
 
-        <div class="mission-container">
-            <button id="actionButton">Open Mission</button>
-           <h4>Mission</h4>
-           <div class="mission-list">
-                <p class="missions" id="mission1">Gathered Equipments</p>
-                <p class="missions" id="mission2">Collect Moon Rocks</p>
-                <p class="missions" id="mission3">Collect samples from the Frozen Lake</p>
-                <p class="missions" id="mission4">Built Moon Base</p>
-           </div>
+            <div class="inventory-container">
+                <h4>Inventory</h4>
+                <div class="actions-container">
+                    <button id="actionButton1" class="primary-button"></button>
+                    <button id="actionButton2" class="primary-button"></button>
+                </div>
+        
+                <!-- <div class="inventory">
+                    <p>Equipment: <span id="item1">None</span></p>
+        
+                    <p>Moon Rocks: <span id="item2">0</span></p>
+        
+                    <p>Frozen Lake Samples: <span id="item3">0</span></p>
+        
+                    <p>Build Moon Base Status: <span id="item4">Absent</span></p>
+                </div> -->
+            </div>
+        </div>
+ 
+        <div class="quest-container">
+            <h4>Quests</h4>
+            <div id="quest1" class="quest">
+                <span class="tag">pending</span>
+                <p>Head to the rocky areas to collect moon rocks</p>
+            </div>
+            
+            <div id="quest2" class="quest">
+                <span class="tag">pending</span>
+                <p>Collect ice samples from the cold region</p>
+            </div>
+
+            <div id="quest3" class="quest">
+                <span class="tag">pending</span>
+                <p>Build Moon Base</p>
+            </div>
+            
+            <div id="quest4" class="quest">
+                <span class="tag">pending</span>
+                <p>Gather Tools and Equipment</p>
+            </div>
         </div>
     </div>
     

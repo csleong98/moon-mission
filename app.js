@@ -1,15 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid')
     const width = 28 // 28 x 28 = 784 squares
-    const modal = document.getElementById('mission-modal')
-    const modalClose = document.getElementById('close')
-    const actionButton = document.getElementById('actionButton')
-    const modalTitle = document.querySelector('h4')
-    const option1Button = document.getElementById('option1')
-    const option2Button = document.getElementById('option2')
-    var missionName = ''
-    var option1 = ''
-    var option2 = ''
+
+    const actionButton1 = document.getElementById('actionButton1')
+    const actionButton2 = document.getElementById('actionButton2')
+
+    // item1 = document.getElementById('item1').innerHTML
+    // item3 = document.getElementById('item3').innerHTML
+    // item2 = document.getElementById('item2').innerHTML
+    // item4 = document.getElementById('item4').innerHTML
+
+    const quest1 = document.getElementById('quest1')
+    const quest2 = document.getElementById('quest2')
+    const quest3 = document.getElementById('quest3')
+    const quest4 = document.getElementById('quest4')
 
     const layout = [
         0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,
@@ -17,15 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -34,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
         0,0,4,4,0,0,0,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,4,4,0,0,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,4,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,1,1,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     ]
 
@@ -89,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     && !squares[astronautCurrentIndex -1].classList.contains('moon-base-land'))
                 astronautCurrentIndex -=1
 
-                actionButton.style.display = "none"
+                actionButton1.style.display = "none"
+                actionButton2.style.display = "none"
 
                 // check if astronaut is in the left side
                 const isAtLeftEdge = (astronautCurrentIndex % width === 0)
@@ -125,7 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     astronautCurrentIndex -= width
 
-                    actionButton.style.display = "none"
+                    actionButton1.style.display = "none"
+                    actionButton2.style.display = "none"
 
                     const isAtTopEdge = (astronautCurrentIndex >= 0 && astronautCurrentIndex <= 27)
 
@@ -159,7 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     astronautCurrentIndex +=1
 
-                    actionButton.style.display = "none"
+                    actionButton1.style.display = "none"
+                    actionButton2.style.display = "none"
 
                     // check if astronaut is in the right side
                     const isAtRightSide = !((astronautCurrentIndex % width) < (width -1))
@@ -194,7 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     astronautCurrentIndex += width
 
-                    actionButton.style.display = "none"
+                    actionButton1.style.display = "none"
+                    actionButton2.style.display = "none"
 
                     const isAtBottoomEdge = (astronautCurrentIndex >= 756 && astronautCurrentIndex <= 784)
 
@@ -226,111 +234,66 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', moveAstronaut)
     moveAstronaut()
 
-    function openMission() {
-        modal.style.display = "block"
-        actionButton.textContent = "Open Mission"
-        modalTitle.textContent = missionName
-        option1Button.textContent = option1
-        option2Button.textContent = option2
-    }
-
     function moonLander() {
-        missionName = "Moonlander-Mission"
-        option1 = "Gather Equipments"
-        option2 = "Lander Checking"
+            actionButton1.style.display = "block"
 
-        actionButton.style.display = "block"
-
-        if (actionButton.addEventListener('click', openMission, true)) {
-            openMission(e)
-        }
-
-        option1Button.onclick = function() {
-            alert("Scientific Equipment Gathered")
-            let mission1 = document.getElementById('mission1')
-            mission1.classList.add('completed')
-        }
-
-        modalClose.onclick = function() {
-            modal.style.display = "none"
-            actionButton.style.display = "none"
-        }
+            actionButton1.innerText = "Gather Scientific Equipments"
+            
+            actionButton1.onclick = function() {
+                span = quest4.querySelector('span')
+                span.textContent = "COMPLETED"
+                span.classList.remove('tag')
+                span.classList.add('tag-completed')
+                actionButton1.innerText = "Done getting the tools"
+            }
 
         }
 
     function collectMoonRock() {
-        missionName = "Explore the Rocky Mountains"
-        option1 = "Gather Moonrocks"
-        option2 = "Continue Exploring"
+        actionButton1.style.display = "block"
 
-        actionButton.style.display = "block"
+        actionButton1.innerText = "Collect moon rocks"
 
-        if (actionButton.addEventListener('click', openMission, true)) {
-            openMission(e)
-        }
-
-        option1Button.onclick = function() {
-            alert("Collected Moonrock samples")
-            let mission2 = document.getElementById('mission2')
-            mission2.classList.add('completed')
-        }
-
-        modalClose.onclick = function() {
-            modal.style.display = "none"
-            actionButton.style.display = "none"
+        actionButton1.onclick = function() {
+            span = quest1.querySelector('span')
+            span.textContent = "COMPLETED"
+            span.classList.remove('tag')
+            span.classList.add('tag-completed')
+            actionButton1.innerText = "Moon rocks collected"
         }
      
     }
 
     function visitIcyArea() {
-        missionName = "Explore the Dark Side of the Moon"
-        option1 = "Collect ice samples"
-        option2 = "Continue Exploring"
+        actionButton1.style.display = "block"
 
-        actionButton.style.display = "block"
+        actionButton1.innerText = "Collect ice samples"
 
-        if (actionButton.addEventListener('click', openMission, true)) {
-            openMission(e)
-        }
-
-        option1Button.onclick = function() {
-            alert("Collected ice samples")
-            let mission3 = document.getElementById('mission3')
-            mission3.classList.add('completed')
-        }
-
-        modalClose.onclick = function() {
-            modal.style.display = "none"
-            actionButton.style.display = "none"
+        actionButton1.onclick = function() {
+            span = quest2.querySelector('span')
+            span.textContent = "COMPLETED"
+            span.classList.remove('tag')
+            span.classList.add('tag-completed')
+            actionButton1.innerText = "Samples collected !"
         }
     }
 
     function buildMoonBase() {
-        missionName = "Found a place for Moonbase!"
-        option1 = "Set Up Moonbase"
-        option2 = "Continue Exploring"
+        actionButton1.style.display = "block"
 
-        actionButton.style.display = "block"
-
-        if (actionButton.addEventListener('click', openMission, true)) {
-            openMission(e)
-        }
-
-        option1Button.onclick = function() {
+        actionButton1.innerText = "Build Moon Base"
+        actionButton1.onclick = function() {
             const moonBaseLand = document.querySelectorAll('.grid .moon-base-land')
 
             moonBaseLand.forEach(square => {
                 square.style.backgroundColor = "rgb(52, 114, 222)"
             })
 
-            alert("Moonbase set up")
-
-            let mission4 = document.getElementById('mission4')
-            mission4.classList.add('completed')
+            span = quest3.querySelector('span')
+            span.textContent = "COMPLETED"
+            span.classList.remove('tag')
+            span.classList.add('tag-completed')
+            actionButton1.innerText = "Moon Base Completed !"
         }
-
-
-            
-
     }
 })
