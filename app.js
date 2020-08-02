@@ -125,6 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     astronautCurrentIndex -= width
 
+                    actionButton.style.display = "none"
+
                     const isAtTopEdge = (astronautCurrentIndex >= 0 && astronautCurrentIndex <= 27)
 
                     if(isAtTopEdge) {
@@ -156,6 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     && !squares[astronautCurrentIndex + 1].classList.contains('moon-base-land'))
 
                     astronautCurrentIndex +=1
+
+                    actionButton.style.display = "none"
+
                     // check if astronaut is in the right side
                     const isAtRightSide = !((astronautCurrentIndex % width) < (width -1))
 
@@ -189,6 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     astronautCurrentIndex += width
 
+                    actionButton.style.display = "none"
+
                     const isAtBottoomEdge = (astronautCurrentIndex >= 756 && astronautCurrentIndex <= 784)
 
                     if(isAtBottoomEdge) {
@@ -218,28 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('keydown', moveAstronaut)
     moveAstronaut()
-    // class Decision {
-    //     constructor(decisionTitle, Option1, Option2) {
-    //         this.decisionTitle = decisionTitle
-    //         this.Option1 = Option1
-    //         this.Option2 = Option2
-    //     }
-    // }
 
-    // locationActions = [
-    //     new Decision('moon-lander-mission', 'Gather Equipments', 'Lander Checking'),
-    //     new Decision('moon-rock-collection', 'Gather Moonrocks', 'Cancel'),
-    //     new Decision('icy-area', 'Collect Ice Samples', 'Cancel'),
-    //     new Decision('moon-base-land', 'Set Up Moonbase', 'Cancel')
-    // ]
-       
-    // for (let i = 0; i < locationActions.length; i++) {
-    //     let title = locationActions[i].decisionTitle
-    //     let option1 = locationActions[i].Option1
-    //     let option2 = locationActions[i].Option2
-
-    //     return title, option1, option2
-    // }
     function openMission() {
         modal.style.display = "block"
         actionButton.textContent = "Open Mission"
