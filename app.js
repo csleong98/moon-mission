@@ -78,23 +78,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     && !squares[astronautCurrentIndex -1].classList.contains('icy-area')
                     && !squares[astronautCurrentIndex -1].classList.contains('moon-base-land'))
 
-                    astronautCurrentIndex -=1
-                    // check if astronaut is in the left side
-                    const isAtLeftEdge = (astronautCurrentIndex % width === 0)
+                astronautCurrentIndex -=1
 
-                    if(isAtLeftEdge) {
-                        astronautCurrentIndex = astronautCurrentIndex + 27
-                    }
+                // check if astronaut is in the left side
+                const isAtLeftEdge = (astronautCurrentIndex % width === 0)
 
-                // if astronaut is near moon-lander, trigger option box
-                if (squares[astronautCurrentIndex -1].classList.contains('moon-lander') 
-                    || squares[astronautCurrentIndex -1].classList.contains('moon-rocks')
-                    || squares[astronautCurrentIndex -1].classList.contains('icy-area') 
-                    || squares[astronautCurrentIndex -1].classList.contains('moon-base-land')) {
+                if(isAtLeftEdge) {
+                    astronautCurrentIndex = astronautCurrentIndex + 27
+                }
 
+                // if moon-lander is on the left side of astronaut moon-lander, trigger moo
+                if (squares[astronautCurrentIndex -1].classList.contains('moon-lander')) {
                     moonLander()
+                }
+
+                if (squares[astronautCurrentIndex -1].classList.contains('moon-rocks')) {
                     collectMoonRock()
+                }
+
+                if (squares[astronautCurrentIndex -1].classList.contains('icy-area')) {
                     visitIcyArea()
+                }
+
+                if (squares[astronautCurrentIndex -1].classList.contains('moon-base-land')) {
                     buildMoonBase()
                 }
                 break
@@ -183,8 +189,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function buildMoonBase() {
         if(!squares[astronautCurrentIndex -1].classList.contains('completed')) {
-            let moonBase = document.querySelectorAll('.moon-base-land')
-            moonBase.classList.remove('moon-base-land')
+            const moonBaseLand = document.querySelectorAll('.grid .moon-base-land')
+
+            moonBaseLand.forEach(square => {
+                square.style.backgroundColor = "rgb(52, 114, 222)"
+            })
 
             let mission4 = document.getElementById('mission4')
             mission4.classList.add('completed')
